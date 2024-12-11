@@ -1,0 +1,3 @@
+make,model,colour,capacity,network,grade,condition,count
+BrandA,ModelX,Red,64GB,Unlocked,A,New,2
+BrandB,ModelY,Blue,128GB,Locked,B,Used,1
