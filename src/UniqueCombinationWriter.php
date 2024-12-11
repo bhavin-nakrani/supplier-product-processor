@@ -6,11 +6,14 @@ class UniqueCombinationWriter
 {
     public function write(string $filePath, array $combinations): void
     {
-        $handle = fopen($filePath, 'a'); // Append mode
+        $fileExists = file_exists($filePath);
+        $handle = fopen($filePath, ($fileExists) ? 'a' : 'w'); // Append mode or write mode
 
         // Write the header row
-        fputcsv($handle, ['make', 'model', 'colour', 'capacity', 'network', 'grade', 'condition', 'count']);
-
+        if (!$fileExists) {
+            fputcsv($handle, ['make', 'model', 'colour', 'capacity', 'network', 'grade', 'condition', 'count']);
+        }
+        
         foreach ($combinations as $combination => $count) {
             $data = json_decode($combination, true);
             $data['count'] = $count;
